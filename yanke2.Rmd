@@ -1,0 +1,78 @@
+```{r}
+
+
+library(foreign)
+mydata <- read.dta("E:/20140118桌面/STAT咨询/OPHTH/ophth.dta")
+
+attach(mydata)
+
+library(ggplot2)
+
+
+Methods <- factor(group, levels=c(1,2),labels=c("Haigis","SRK_T"))
+
+qplot(out,pre,shape=Methods,size=Methods,color=Methods,xlim=c(-4,3),ylim=c(-4,3),xlab="实际屈光",ylab="预测屈光",)
+
+
+q <- qplot(out,pre,shape=Methods,size=1.5,color=Methods,xlim=c(-4,3),ylim=c(-4,3),xlab="实际屈光",ylab="预测屈光")
+
+q1 <- q + geom_abline(intercept = 0, slope =1)
+q2 <- q1 + theme_classic()
+
+qplot(out,pre,data=mydata[mydata$yanzhou<28],shape=Methods,size=1.5,color=Methods,xlim=c(-4,3),ylim=c(-4,3),xlab="实际屈光",ylab="预测屈光")
+
+
+
+mydata1 <- read.dta("E:/20140118桌面/STAT咨询/OPHTH/ophth1.dta")
+
+attach(mydata1)
+
+Methods <- factor(group, levels=c(1,2),labels=c("Haigis","SRK_T"))
+
+q <- qplot(out,pre,shape=Methods,size=1.5,color=Methods,xlim=c(-4,3),ylim=c(-4,3),xlab="实际屈光",ylab="预测屈光")
+q1 <- q + geom_abline(intercept = 0, slope =1)
+q2 <- q1 + theme_classic()
+detach(mydata1)
+
+
+mydata2 <- read.dta("E:/20140118桌面/STAT咨询/OPHTH/ophth2.dta")
+
+attach(mydata2)
+
+Methods <- factor(group, levels=c(1,2),labels=c("Haigis","SRK_T"))
+
+q <- qplot(out,pre,shape=Methods,size=1.5,color=Methods,xlim=c(-4,3),ylim=c(-4,3),xlab="实际屈光",ylab="预测屈光")
+q1 <- q + geom_abline(intercept = 0, slope =1)
+q2 <- q1 + theme_classic()
+detach(mydata2)
+
+mydata3 <- read.dta("E:/20140118桌面/STAT咨询/OPHTH/haigis.dta")
+
+attach(mydata3)
+
+Methods <- factor(yanzhou, levels=c(1,2),labels=c("小于28","大于等于28"))
+
+q <- qplot(out,pre,shape=Methods,size=1.5,color=Methods,xlim=c(-4,3),ylim=c(-4,3),xlab="实际屈光",ylab="预测屈光")
+q1 <- q + geom_abline(intercept = 0, slope =1)
+q2 <- q1 + theme_classic()
+detach(mydata3)
+
+mydata4 <- read.dta("E:/20140118桌面/STAT咨询/OPHTH/srk.dta")
+
+attach(mydata4)
+
+Methods <- factor(yanzhou, levels=c(1,2),labels=c("小于28","大于等于28"))
+
+q <- qplot(out,pre,lty=c(1, 2),size=1.5,color=Methods,xlim=c(-4,3),ylim=c(-4,3),xlab="实际屈光",ylab="预测屈光")
+q1 <- q + geom_abline(intercept = 0, slope =1)
+q2 <- q1 + theme_classic()
+q2
+detach(mydata4)
+
+
+
+
+q <- qplot(out,pre,data=mydata4, shape=factor(yanzhou),size=1.5,color=factor(yanzhou),xlim=c(-4,3),ylim=c(-4,3),xlab="实际屈光",ylab="预测屈光")
+(q1 <- q + scale_shape_manual(values = c("1" = 1,"2" = 17),guide = guide_legend(title = "V"))+scale_color_manual(values = c("1" = "blue","2" = "red"),guide = guide_legend(title = "V"))+geom_abline(intercept = 0, slope =1)+ theme_classic())
+
+```

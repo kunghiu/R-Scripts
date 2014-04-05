@@ -16,6 +16,7 @@ b <- qplot(TMPRSS4, ECADHERIN, data=spear, geom="jitter")
 
 table(spear$TMPRSS4, spear$ECADHERIN)
 cor(spear$TMPRSS4, spear$ECADHERIN)
+cor(spear$TMPRSS4, spear$ECADHERIN, method = "spearm")
 
 library(ggplot2)
 library(grid)
